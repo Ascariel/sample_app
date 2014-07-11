@@ -1,19 +1,24 @@
 require 'spec_helper'
-require 'pp'
+
 
 describe "Static pages" do
+  # def visit_page(page)
+  #     visit "/static_pages/#{page}"
+  # end
+
+  let!(:pre_title) {"Ruby on Rails Tutorial Sample App |"}
 
   describe "Home page" do
 
-    it "should have the content 'Sample App'" do
-      visit '/static_pages/home'
-      expect(page).to have_content('Sample App')
+    it "should have the content 'Home'" do
+      visit_page("home")
+      expect(page).to have_content('Home'), "expected... got #{html}" 
+
     end
 
     it "should have the title 'Home'" do
-      visit '/static_pages/home'
-
-      expect(page).to have_title("Ruby on Rails Tutorial Sample App | Home"), "expected... got #{html}" 
+      visit_page("home")
+      expect(page).to have_title("#{pre_title} Home"), "expected... got #{html}" 
 
     end
   end
@@ -21,26 +26,44 @@ describe "Static pages" do
   describe "Help page" do
 
     it "should have the content 'Help'" do
-      visit '/static_pages/help'
+      visit_page("help")
       expect(page).to have_content('Help')
     end
 
     it "should have the title 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_title("Ruby on Rails Tutorial Sample App | Help"), "expected... got #{html}" 
+      visit_page("help")
+      expect(page).to have_title("#{pre_title} Help"), "expected... got #{html}" 
   end
 end
 
   describe "About page" do
 
     it "should have the content 'About Us'" do
-      visit '/static_pages/about'
+      visit_page("about")
       expect(page).to have_content('About Us')
     end
 
     it "should have the title 'About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_title("Ruby on Rails Tutorial Sample App | About Us"), "expected... got #{html}" 
+      visit_page("about")
+      expect(page).to have_title("#{pre_title} About Us"), "expected... got #{html}" 
     end
+
   end
+
+describe "Contact Us page" do 
+
+    it "displays contact us page" do 
+      visit_page("contact")
+      expect(page).to have_content("Contact")
+    end
+
+    it "should have title 'Contact" do 
+
+      visit_page("contact")
+      expect(page).to have_title("#{pre_title} Contact"), "expected... got #{html}" 
+
+    end
+   end
+
+
 end
