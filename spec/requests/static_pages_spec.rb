@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-
+ 
 describe "Static pages" do
   # def visit_page(page)
   #     visit "/static_pages/#{page}"
