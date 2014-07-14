@@ -6,7 +6,7 @@ describe "Static pages" do
   #     visit "/static_pages/#{page}"
   # end
 
-  let!(:pre_title) {"Ruby on Rails Tutorial Sample App |"}
+  let!(:base_title) {"Ruby on Rails Tutorial Sample App"}
 
   describe "Home page" do
 
@@ -16,10 +16,16 @@ describe "Static pages" do
 
     end
 
-    it "should have the title 'Home'" do
+    it "should display the base_title when :title is empty" do
       visit_page("home")
-      expect(page).to have_title("#{pre_title} Home"), "expected... got #{html}" 
+      expect(page).to have_title("#{base_title}"), "expected... got #{html}" 
 
+    end
+
+    it "should not display Home when :title is empty" do 
+
+      visit_page("home")
+      expect(page).to_not have_title("| Home"), "expected... got #{html}" 
     end
   end
 
@@ -32,7 +38,7 @@ describe "Static pages" do
 
     it "should have the title 'Help'" do
       visit_page("help")
-      expect(page).to have_title("#{pre_title} Help"), "expected... got #{html}" 
+      expect(page).to have_title("#{base_title} | Help"), "expected... got #{html}" 
   end
 end
 
@@ -45,7 +51,7 @@ end
 
     it "should have the title 'About Us'" do
       visit_page("about")
-      expect(page).to have_title("#{pre_title} About Us"), "expected... got #{html}" 
+      expect(page).to have_title("#{base_title} | About Us"), "expected... got #{html}" 
     end
 
   end
@@ -60,7 +66,7 @@ describe "Contact Us page" do
     it "should have title 'Contact" do 
 
       visit_page("contact")
-      expect(page).to have_title("#{pre_title} Contact"), "expected... got #{html}" 
+      expect(page).to have_title("#{base_title} | Contact"), "expected... got #{html}" 
 
     end
    end
