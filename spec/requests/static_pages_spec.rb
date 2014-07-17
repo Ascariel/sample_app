@@ -2,74 +2,94 @@ require 'spec_helper'
 
  
 describe "Static pages" do
-  # def visit_page(page)
-  #     visit "/static_pages/#{page}"
-  # end
+ 
 
   let!(:base_title) {"Ruby on Rails Tutorial Sample App"}
 
+  subject{page} #allows the use of it should syntax to describe tasks in short
+
+  before {visit root_path} #applies befeore every test
+
   describe "Home page" do
 
-    it "should have the content 'Home'" do
-      visit_page("home")
-      expect(page).to have_content('Home'), "expected... got #{html}" 
+    
+
+    it {should have_content('Home')}
+    it {should have_title(full_title("")) }
+    it {should_not have_title('| Home')}
+
+    # it "should have the content 'Home'" do
+    #   visit root_path
+    #   expect(page).to have_content('Home'), "expected... got #{html}" 
 
     end
 
-    it "should display the base_title when :title is empty" do
-      visit_page("home")
-      expect(page).to have_title("#{base_title}"), "expected... got #{html}" 
+#     describe "asdads" do
+#     it "should display the base_title when :title home is empty" do
+#       visit root_path
+#       expect(page).to have_title("#{full_title(false)}")
 
-    end
+#     end
+# end
+    # it "should not display Home when :title is empty" do 
 
-    it "should not display Home when :title is empty" do 
-
-      visit_page("home")
-      expect(page).to_not have_title("| Home"), "expected... got #{html}" 
-    end
-  end
+    #   visit root_path
+    #   expect(page).to_not have_title("| Home"), "expected... got #{html}" 
+    # end
+  # end
 
   describe "Help page" do
 
-    it "should have the content 'Help'" do
-      visit_page("help")
-      expect(page).to have_content('Help')
-    end
+    it {should have_content('Help')}
+    it {should have_title(full_title(""))}
+    it {should_not have_content('| Help')}
 
-    it "should have the title 'Help'" do
-      visit_page("help")
-      expect(page).to have_title("#{base_title} | Help"), "expected... got #{html}" 
-  end
+  #   it "should have the content 'Help'" do
+  #     visit help_path
+  #     expect(page).to have_content('Help')
+  #   end
+
+  #   it "should have the title 'Help'" do
+  #     visit help_path
+  #     expect(page).to have_title("#{base_title} | Help"), "expected... got #{html}" 
+  # end
 end
 
   describe "About page" do
 
-    it "should have the content 'About Us'" do
-      visit_page("about")
-      expect(page).to have_content('About Us')
-    end
+    it {should have_content('About')}
+    it {should have_title(full_title(""))}
+    it {should_not have_content('| About')}
 
-    it "should have the title 'About Us'" do
-      visit_page("about")
-      expect(page).to have_title("#{base_title} | About Us"), "expected... got #{html}" 
-    end
+    # it "should have the content 'About Us'" do
+    #     visit about_path
+    #   expect(page).to have_content('About Us')
+    # end
+
+    # it "should have the title 'About Us'" do
+    #   visit about_path
+    #   expect(page).to have_title("#{base_title} | About Us"), "expected... got #{html}" 
+    # end
 
   end
 
 describe "Contact Us page" do 
 
-    it "displays contact us page" do 
-      visit_page("contact")
-      expect(page).to have_content("Contact")
-    end
+    it {should have_content('Contact')}
+    it {should have_title(full_title(''))}
+    it {should_not have_content('| Contact')}
 
-    it "should have title 'Contact" do 
+   #  it "displays Contact content" do 
+   #    visit contact_path
+   #    expect(page).to have_content("Contact"), "expected... got #{html}" 
+   #  end
 
-      visit_page("contact")
-      expect(page).to have_title("#{base_title} | Contact"), "expected... got #{html}" 
+   #  it "should have title 'Contact" do 
 
-    end
-   end
+   #    visit contact_path
+   #    expect(page).to have_title("#{base_title}"), "expected... got #{html}" 
 
-
+   #  end
+   # end
+  end
 end
