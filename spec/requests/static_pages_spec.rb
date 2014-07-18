@@ -8,10 +8,10 @@ describe "Static pages" do
 
   subject{page} #allows the use of it should syntax to describe tasks in short
 
-  before {visit root_path} #applies befeore every test
+   #applies befeore every test
 
   describe "Home page" do
-
+    before {visit root_path}
     
 
     it {should have_content('Home')}
@@ -39,6 +39,7 @@ describe "Static pages" do
   # end
 
   describe "Help page" do
+    before {visit help_path}
 
     it {should have_content('Help')}
     it {should have_title(full_title(""))}
@@ -56,6 +57,8 @@ describe "Static pages" do
 end
 
   describe "About page" do
+
+    before {visit about_path}
 
     it {should have_content('About')}
     it {should have_title(full_title(""))}
@@ -75,9 +78,12 @@ end
 
 describe "Contact Us page" do 
 
+  before {visit contact_path}
+
     it {should have_content('Contact')}
+    it {should have_selector('h1', text: 'Contact'), "expecting...got #{html}"}
     it {should have_title(full_title(''))}
-    it {should_not have_content('| Contact')}
+
 
    #  it "displays Contact content" do 
    #    visit contact_path
